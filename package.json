@@ -9,7 +9,10 @@
   "author": "hemanthkumar",
   "license": "ISC",
   "dependencies": {
+    "backbone": "^1.3.2",
     "express": "^4.13.4",
-    "logger": "0.0.1"
+    "jQuery": "^1.7.4",
+    "logger": "0.0.1",
+    "underscore": "^1.8.3"
   }
 }

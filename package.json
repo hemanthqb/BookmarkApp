@@ -1,0 +1,15 @@
+{
+  "name": "bookmarkplus",
+  "version": "1.0.0",
+  "description": "This is simple bookmark app which demonstrates backbone, expressJs, MongoDB features",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "hemanthkumar",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.4",
+    "logger": "0.0.1"
+  }
+}

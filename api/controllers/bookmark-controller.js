@@ -2,7 +2,7 @@
 var mongoose = require('mongoose'),
     bookmarkSchema=require('../schemas/bookmark-schema');
 
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect(process.env.MONGOLAB_URI);
 
 var Bookmark = mongoose.model('Bookmark', bookmarkSchema);
 

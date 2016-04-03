@@ -10,28 +10,18 @@ var app = app || {};
 		// the App already present in the HTML.
 		el: '.bookmarkapp',
 
-		// Delegated events for add/remove/delete bookmarks
-		events: {
-      'click #add-bookmark':'addBookmark',
-      'click #delete-bookmark':'deleteBookmark'
-		},
-
 		initialize: function () {
+			  //initializing nessary views
+			  new app.AddBookmarkView();
+			  new app.AddFolderView();
+				new app.BookmarkView();
 
-		},
-
-		render: function () {
-
-		},
-
-    //handler for add bookmark button click
-    addBookmark:function(){
-    
-    },
-
-    //handler for delete bookmark button click
-    deleteBookmark:function(){
-
-    }
+				//fecthing result from api
+			  app.bookmarklist.fetch({success:function(){
+					//refresh treeview when result is available,change event is not used
+					//for treeview render since it is interfering with user experiance
+					app.bookmarklist.refreshtree();
+				}});
+		}
 	});
 })(jQuery);

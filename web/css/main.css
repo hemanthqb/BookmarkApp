@@ -9,3 +9,65 @@
 .header{
   margin: 10px;
 }
+
+.error-message{
+  display: none;
+}
+
+.sprite-DocumentsFolder
+ {
+     background: url("images/folder.png") no-repeat;
+     display: inline-block;
+     width: 20px;
+     height: 20px;
+     background-size: contain;
+ }
+
+ .sprite-Documents
+ {
+     background: url("images/bookmark-plus.png") no-repeat top left;
+     display: inline-block;
+     width: 20px;
+     height: 20px;
+     background-size: contain;
+ }
+
+ .foldernode{
+     display: inline-block;
+ }
+
+ .folderimg{
+     display: inline-block;
+     width:20px;
+     height:20px;
+     background: url("images/folder.png") no-repeat;
+     background-size: contain;
+ }
+
+ .bookmarkimg
+ {
+     display: inline-block;
+     width:20px;
+     height:20px;
+     background: url("images/bookmark-plus.png") no-repeat;
+     background-size: contain;
+ }
+
+ .foldertext{
+     display:inline-block;
+     vertical-align: text-bottom;
+ }
+
+ .ui-igtree-expander
+ {
+    font-size:20px !important;
+ }
+
+ .bookmarklink{
+   cursor:pointer;
+   display: inline-block;
+ }
+
+ #bookmark-view{
+   margin:20px;
+ }

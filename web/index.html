@@ -1,131 +1,134 @@
 <!doctype html>
 <html lang="en" data-framework="backbonejs">
-	<head>
-		<meta charset="utf-8">
-		<title>Bookmark</title>
 
-		<link href="lib/jquery-ui/jquery-ui.css" rel="stylesheet">
+<head>
+    <meta charset="utf-8">
+    <title>Bookmark</title>
+
+    <link href="lib/jquery-ui/jquery-ui.css" rel="stylesheet">
     <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet">
-		<link href="lib/igniteui/css/structure/infragistics.css" rel="stylesheet">
-		<link href="lib/igniteui/css/themes/infragistics/infragistics.theme.css" rel="stylesheet">
-		<link href="css/main.css" rel="stylesheet">
+    <link href="lib/igniteui/css/structure/infragistics.css" rel="stylesheet">
+    <link href="lib/igniteui/css/themes/infragistics/infragistics.theme.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
 
-		<script type="text/html" id="folderdropdown">
-			 <option selected="true">/</option>
-	     <% for(var i in list){ %>
-	     <option ><%= list[i].name %></option>
-			 <% } %>
-		</script>
+    <script type="text/html" id="folderdropdown">
+        <option selected="true">/</option>
+        <% for(var i in list){ %>
+            <option>
+                <%= list[i].name %>
+            </option>
+            <% } %>
+    </script>
 
-		<script type="text/html" id="foldernode">
-			 <div class="foldernode" type=${type}>
-				 {{if ${type} == "folder"}}
-				   <div class="folderimg"/>
-					 <span class="foldertext" type=${type}>${name}</span>
-				 {{else}}
-						 <div class="bookmarkimg"/>
-						 <span type=${type} class="foldertext">${name}</span>
-				 {{/if}}
-		   </div>
-		</script>
+    <script type="text/html" id="foldernode">
+        <div class="foldernode" type=${type}>
+            {{if ${type} == "folder"}}
+            <div class="folderimg" />
+            <span class="foldertext" type=${type}>${name}</span> {{else}}
+            <div class="bookmarkimg" />
+            <span type=${type} class="foldertext">${name}</span> {{/if}}
+        </div>
+    </script>
 
-	</head>
-	<body>
+</head>
+
+<body>
     <section class="bookmarkapp">
-    			<header class="header">
-						<div class="page-header">
-			  			<h1>Bookmark++ <small>re-inventing the wheel</small></h1>
-		      	</div>
-    			</header>
+        <header class="header">
+            <div class="page-header">
+                <h1>Bookmark++ <small>re-inventing the wheel</small></h1>
+            </div>
+        </header>
 
-    			<section class="main">
-						<button class="btn btn-primary btn-lg active" data-toggle="modal" data-target="#add-bookmark-dialog">Add Bookmark</button>
-           	<button id="add-folder-btn" class="btn btn-primary btn-lg active" data-toggle="modal" data-target="#add-folder-dialog">Add Folder</button>
-						<button id="delete" class="btn btn-primary btn-lg active" disabled="disabled">Delete</button>
-    			</section>
+        <section class="main">
+            <button class="btn btn-primary btn-lg active" data-toggle="modal" data-target="#add-bookmark-dialog">Add Bookmark</button>
+            <button id="add-folder-btn" class="btn btn-primary btn-lg active" data-toggle="modal" data-target="#add-folder-dialog">Add Folder</button>
+            <button id="delete" class="btn btn-primary btn-lg active" disabled="disabled">Delete</button>
+        </section>
 
-					<!-- Add Bookmark Modal -->
-					<div id="add-bookmark-dialog" class="modal fade" role="dialog">
-					  <div class="modal-dialog">
-					    <!-- Modal content-->
-					    <div class="modal-content">
-					      <div class="modal-header">
-					        <button  type="button" class="close" data-dismiss="modal">&times;</button>
-					        <h4 class="modal-title">Add Bookmark</h4>
-					      </div>
-					      <div class="modal-body">
-									<div class="form-group">
-                    <div id="title-input-group" class="form-group">
-											<label for="url">Enter the title</label>
-											<input type="text" class="form-control" placeholder="Awesome Javascript" id="title">
-	                    <span id="title-error" class="help-block error-message">title should not be empty</span>
-								  	</div>
-									  <div id="addbook-input-group" class="form-group">
-											<label for="url">Enter the url to bookmark</label>
-							        <input type="text" class="form-control" placeholder="http://google.com" id="url">
-	                    <span id="url-error" class="help-block error-message">enter a valid url</span>
-							   		</div>
-									</div>
-						      <div class="form-group">
-						         <label for="path">Select the folder</label>
-										 <select  class="form-control" id="path">
+        <!-- Add Bookmark Modal -->
+        <div id="add-bookmark-dialog" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Add Bookmark</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <div id="title-input-group" class="form-group">
+                                <label for="url">Enter the title</label>
+                                <input type="text" class="form-control" placeholder="Awesome Javascript" id="title">
+                                <span id="title-error" class="help-block error-message">title should not be empty</span>
+                            </div>
+                            <div id="addbook-input-group" class="form-group">
+                                <label for="url">Enter the url to bookmark</label>
+                                <input type="text" class="form-control" placeholder="http://google.com" id="url">
+                                <span id="url-error" class="help-block error-message">enter a valid url</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="path">Select the folder</label>
+                            <select class="form-control" id="path">
 										 </select>
-						      </div>
-					      </div>
-					      <div class="modal-footer">
-									<button  id="add-bookmark" type="button" class="btn btn-success">Add Bookmark</button>
-					        <button id="addbookclose" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					      </div>
-					    </div>
-					  </div>
-					</div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="add-bookmark" type="button" class="btn btn-success">Add Bookmark</button>
+                        <button id="addbookclose" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-					<!-- Add Folder Modal -->
-					<div id="add-folder-dialog" class="modal fade" role="dialog">
-						<div class="modal-dialog">
-							<!-- Modal content-->
-							<div class="modal-content">
-								<div class="modal-header">
-										<button id="folder-dialog-close" type="button" class="close" data-dismiss="modal">&times;</button>
-										<h4 class="modal-title">Add Folder</h4>
-								</div>
-								<div class="modal-body">
-									<div class="form-group" >
-									 <div id="urlgroup" class="control-group">
-										 <label  class="control-label" for="url">Enter the folder name</label>
-                     <div class="controls">
-												 <input type="text" class="form-control" placeholder="BoringStuffs" id="foldername">
-												 <span id="folder-error" class="help-block error-message">Please provide valid folder name</span>
-							  		 </div>
-									 </div>
-									</div>
-								</div>
-								<div class="modal-footer">
-									<button  id="add-bookmark" type="button" class="btn btn-success">Add Folder</button>
-									<button id="folder-dialog-close-button" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div id="bookmark-view" class="bookmark-view">
-					</div>
-					<a id="clicktrigger" target="_blank"></a>
-					<footer class="footer"></footer>
+        <!-- Add Folder Modal -->
+        <div id="add-folder-dialog" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button id="folder-dialog-close" type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Add Folder</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <div id="urlgroup" class="control-group">
+                                <label class="control-label" for="url">Enter the folder name</label>
+                                <div class="controls">
+                                    <input type="text" class="form-control" placeholder="BoringStuffs" id="foldername">
+                                    <span id="folder-error" class="help-block error-message">Please provide valid folder name</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="add-bookmark" type="button" class="btn btn-success">Add Folder</button>
+                        <button id="folder-dialog-close-button" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="bookmark-view" class="bookmark-view">
+        </div>
+        <a id="clicktrigger" target="_blank"></a>
+        <footer class="footer"></footer>
     </section>
 
     <script src="lib/jquery-1.12.2.js"></script>
-		<script src="lib/jquery-ui/jquery-ui.js"></script>
-		<script src="lib/underscore.js"></script>
-		<script src="lib/backbone.js"></script>
-	  <script src="lib/backbone.localstorage.js"></script>
+    <script src="lib/jquery-ui/jquery-ui.js"></script>
+    <script src="lib/underscore.js"></script>
+    <script src="lib/backbone.js"></script>
+    <script src="lib/backbone.localstorage.js"></script>
     <script src="lib/bootstrap/js/bootstrap.js"></script>
-		<script src="lib/igniteui/infragistics.js"></script>
+    <script src="lib/igniteui/infragistics.js"></script>
 
     <script src="app/models/bookmarklist.js"></script>
     <script src="app/views/addfolder-view.js"></script>
-		<script src="app/views/addbookmark-view.js"></script>
-		<script src="app/views/bookmark-view.js"></script>
-		<script src="app/views/app-view.js"></script>
+    <script src="app/views/addbookmark-view.js"></script>
+    <script src="app/views/bookmark-view.js"></script>
+    <script src="app/views/app-view.js"></script>
     <script src="app/app.js"></script>
-  </body>
+</body>
+
 </html>
